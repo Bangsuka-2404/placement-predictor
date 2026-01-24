@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fa-solid fa-square-check"></i> ATS Result</h1>
+            <p>Resume analyzed successfully ✅</p>
+        </div>
+
+        <div class="result-box">
+            <h2><i class="fa-solid fa-file"></i> File: {{ filename }}</h2>
+            <h2><i class="fa-solid fa-star"></i> ATS Score: {{ ats_score }} / 100</h2>
+
+            <div class="progress-wrapper">
+                <div class="progress-bar" id="bar"></div>
+            </div>
+
+            <h2><i class="fa-solid fa-check"></i> Detected Skills</h2>
+            <p>{{ detected_skills | join(", ") }}</p>
+
+            <br>
+
+            <h2><i class="fa-solid fa-triangle-exclamation"></i> Missing Skills</h2>
+            <p>{{ missing_skills | join(", ") }}</p>
+
+            <div class="actions">
+                <a href="/resume" class="action-btn secondary">
+                    <i class="fa-solid fa-arrow-left"></i> Upload Another
+                </a>
+                <a href="/" class="action-btn">
+                    <i class="fa-solid fa-house"></i> Home
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let ats = {{ ats_score }};
+        document.getElementById("bar").style.width = ats + "%";
+    </script>
+</body>
+</html>

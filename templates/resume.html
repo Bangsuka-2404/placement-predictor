@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume ATS Checker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fa-solid fa-file-pdf"></i> Resume ATS Checker</h1>
+            <p>Upload your resume PDF and get ATS Score + skill match ✅</p>
+        </div>
+
+        <div class="result-box">
+            <form method="POST" enctype="multipart/form-data">
+                <h2>Select Resume (PDF)</h2>
+                <br>
+
+                <input type="file" name="resume" accept=".pdf" required>
+
+                <br><br>
+                <button class="btn" type="submit">
+                    <i class="fa-solid fa-upload"></i> Upload & Analyze
+                </button>
+            </form>
+
+            <div class="actions">
+                <a href="/" class="action-btn secondary">
+                    <i class="fa-solid fa-arrow-left"></i> Back
+                </a>
+                <a href="/resume-records" class="action-btn">
+                    <i class="fa-solid fa-clock-rotate-left"></i> Resume Records
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

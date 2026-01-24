@@ -1,0 +1,432 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Poppins", sans-serif;
+}
+
+/* -------------------------
+   Background
+------------------------- */
+body{
+    min-height:100vh;
+    background: linear-gradient(-45deg,#6a11cb,#2575fc,#00c6ff,#6a11cb);
+    background-size: 400% 400%;
+    animation: gradientMove 12s ease infinite;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+@keyframes gradientMove {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+}
+
+/* -------------------------
+   Container (Premium Glass)
+------------------------- */
+.container{
+    width:100%;
+    max-width:950px;
+
+    background: rgba(255,255,255,0.93);
+    border-radius:22px;
+    overflow:hidden;
+
+    border: 1px solid rgba(255,255,255,0.35);
+    backdrop-filter: blur(12px);
+
+    box-shadow:0 15px 45px rgba(0,0,0,0.25);
+    transition: 0.3s ease;
+
+    animation: pop 0.5s ease;
+}
+
+.container:hover{
+    transform: translateY(-4px);
+    box-shadow:0 22px 65px rgba(0,0,0,0.30);
+}
+
+@keyframes pop {
+    from{
+        opacity: 0;
+        transform: translateY(18px) scale(0.98);
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* -------------------------
+   Header
+------------------------- */
+.header{
+    padding:30px;
+    background:linear-gradient(90deg,#2575fc,#6a11cb);
+    color:#fff;
+    text-align:center;
+}
+
+.header h1{
+    font-size:28px;
+    font-weight:800;
+    letter-spacing:0.2px;
+}
+
+.header p{
+    margin-top:6px;
+    opacity:.95;
+    font-size:15px;
+}
+
+/* -------------------------
+   Forms
+------------------------- */
+.form-box{
+    padding:30px;
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap:20px;
+}
+
+.field{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+}
+
+.field label{
+    font-weight:700;
+    font-size:14px;
+    color:#222;
+}
+
+/* -------------------------
+   Inputs with icons
+------------------------- */
+.input-icon{
+    position:relative;
+}
+
+.input-icon i{
+    position:absolute;
+    top:50%;
+    left:14px;
+    transform:translateY(-50%);
+    color:#2575fc;
+}
+
+.input-icon input{
+    width:100%;
+    padding:12px 12px 12px 42px;
+    border-radius:14px;
+    border:1px solid rgba(0,0,0,0.12);
+    outline:none;
+    font-size:14px;
+
+    background: rgba(255,255,255,0.72);
+    transition: 0.25s ease;
+}
+
+.input-icon input:focus{
+    border:1px solid #2575fc;
+    box-shadow:0 0 0 4px rgba(37,117,252,0.18);
+    transform: scale(1.01);
+}
+
+/* -------------------------
+   COOL BUTTONS (UNCHANGED)
+------------------------- */
+.btn, .action-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    padding: 14px 18px;
+    border: none;
+    border-radius: 14px;
+
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: 0.3px;
+
+    cursor: pointer;
+    text-decoration: none;
+
+    color: white;
+    background: linear-gradient(135deg, #2575fc, #6a11cb);
+
+    box-shadow: 0 12px 30px rgba(37, 117, 252, 0.35);
+    transition: all 0.25s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn{
+    grid-column: span 2;
+}
+
+/* Shine effect */
+.btn::before, .action-btn::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.25);
+    transform: skewX(-20deg);
+    transition: 0.5s;
+}
+
+.btn:hover::before, .action-btn:hover::before {
+    left: 140%;
+}
+
+.btn:hover, .action-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
+}
+
+.btn:active, .action-btn:active {
+    transform: translateY(0px) scale(0.98);
+}
+
+/* Dark secondary button */
+.action-btn.secondary {
+    background: linear-gradient(135deg, #111, #444);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.35);
+}
+
+.action-btn.secondary:hover {
+    box-shadow: 0 16px 38px rgba(0,0,0,0.45);
+}
+
+/* -------------------------
+   Footer Links (glass button look)
+------------------------- */
+.footer-links{
+    grid-column: span 2;
+    text-align:center;
+    margin-top:10px;
+}
+
+.footer-links a{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    width: 100%;
+    margin-top: 10px;
+
+    padding: 12px 14px;
+    border-radius: 14px;
+
+    font-weight: 800;
+    font-size: 14px;
+
+    text-decoration: none;
+    color: #ffffff;
+
+    background: rgba(0,0,0,0.18);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    backdrop-filter: blur(8px);
+
+    transition: 0.3s;
+}
+
+.footer-links a:hover{
+    transform: translateY(-2px);
+    background: rgba(0,0,0,0.24);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+/* -------------------------
+   Result Page
+------------------------- */
+.result-box{
+    padding:30px;
+    text-align:center;
+}
+
+.result-box h2{
+    font-size:22px;
+    margin-bottom:10px;
+    font-weight:900;
+}
+
+.prediction{
+    font-size:22px;
+    font-weight:900;
+    margin-top:15px;
+}
+
+/* -------------------------
+   Progress Bar
+------------------------- */
+.progress-wrapper{
+    width:100%;
+    max-width:520px;
+    margin:22px auto;
+
+    height: 18px;
+    background: rgba(0,0,0,0.08);
+    border-radius: 999px;
+    overflow: hidden;
+    position: relative;
+}
+
+.progress-bar{
+    height:100%;
+    width:0%;
+    background: linear-gradient(90deg,#00c6ff,#0072ff,#6a11cb);
+    border-radius: 999px;
+    transition: 0.8s ease;
+
+    box-shadow: 0 10px 20px rgba(37,117,252,0.35);
+}
+
+/* -------------------------
+   Stats Cards
+------------------------- */
+.stats{
+    margin-top:20px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+}
+
+.stat-card{
+    background: rgba(255,255,255,0.76);
+    padding:16px;
+    border-radius:18px;
+
+    border: 1px solid rgba(0,0,0,0.06);
+    box-shadow:0 10px 25px rgba(0,0,0,0.08);
+
+    transition: 0.25s;
+    text-align:left;
+}
+
+.stat-card:hover{
+    transform: translateY(-3px);
+    box-shadow:0 14px 35px rgba(0,0,0,0.14);
+}
+
+.stat-card i{
+    color:#6a11cb;
+    font-size:18px;
+    margin-right:8px;
+}
+
+/* -------------------------
+   Actions row
+------------------------- */
+.actions{
+    margin-top:25px;
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+/* -------------------------
+   File input styling
+------------------------- */
+input[type="file"]{
+    width:100%;
+    max-width:520px;
+    padding: 12px;
+    border-radius: 14px;
+    border: 1px solid rgba(0,0,0,0.12);
+
+    background: rgba(255,255,255,0.75);
+    box-shadow:0 10px 25px rgba(0,0,0,0.06);
+
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+input[type="file"]:hover{
+    transform: translateY(-2px);
+    box-shadow:0 14px 30px rgba(0,0,0,0.10);
+}
+
+/* Choose file button (Chrome/Edge) */
+input[type="file"]::file-selector-button{
+    border: none;
+    padding: 10px 14px;
+    border-radius: 12px;
+    cursor: pointer;
+
+    font-weight: 800;
+    color: white;
+    background: linear-gradient(135deg, #2575fc, #6a11cb);
+    box-shadow: 0 12px 25px rgba(37,117,252,0.30);
+    transition: 0.25s;
+}
+
+input[type="file"]::file-selector-button:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 16px 35px rgba(0, 0, 0, 0.20);
+}
+
+input[type="file"]::file-selector-button:active{
+    transform: scale(0.97);
+}
+
+/* -------------------------
+   Table Styling (records pages)
+------------------------- */
+table{
+    width:100%;
+    border-collapse:collapse;
+    overflow:hidden;
+    border-radius: 18px;
+    background: rgba(255,255,255,0.9);
+    box-shadow:0 12px 30px rgba(0,0,0,0.08);
+}
+
+th{
+    background: linear-gradient(90deg,#2575fc,#6a11cb);
+    color:white;
+    font-weight:900;
+    padding:14px;
+    text-align:center;
+}
+
+td{
+    padding:12px;
+    text-align:center;
+    border-bottom:1px solid rgba(0,0,0,0.07);
+    font-weight:600;
+    color:#222;
+}
+
+tr:hover td{
+    background: rgba(37,117,252,0.06);
+}
+
+/* -------------------------
+   Responsive
+------------------------- */
+@media(max-width:768px){
+    .form-box{
+        grid-template-columns:1fr;
+    }
+    .btn, .footer-links{
+        grid-column:span 1;
+    }
+    .stats{
+        grid-template-columns:1fr;
+    }
+}

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Placement Predictor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fa-solid fa-graduation-cap"></i> Placement Predictor</h1>
+            <p>Predict your placement probability using ML 🚀</p>
+        </div>
+
+        <form class="form-box" method="POST">
+
+            <div class="field">
+                <label>CGPA</label>
+                <div class="input-icon">
+                    <i class="fa-solid fa-chart-line"></i>
+                    <input type="number" step="0.01" name="cgpa" required placeholder="e.g. 8.2">
+                </div>
+            </div>
+
+            <div class="field">
+                <label>Projects</label>
+                <div class="input-icon">
+                    <i class="fa-solid fa-code"></i>
+                    <input type="number" name="projects" required placeholder="e.g. 3">
+                </div>
+            </div>
+
+            <div class="field">
+                <label>Skills Score</label>
+                <div class="input-icon">
+                    <i class="fa-solid fa-laptop-code"></i>
+                    <input type="number" name="skills_score" required placeholder="0 - 100">
+                </div>
+            </div>
+
+            <div class="field">
+                <label>Aptitude Score</label>
+                <div class="input-icon">
+                    <i class="fa-solid fa-brain"></i>
+                    <input type="number" name="aptitude_score" required placeholder="0 - 100">
+                </div>
+            </div>
+
+            <div class="field">
+                <label>Internships</label>
+                <div class="input-icon">
+                    <i class="fa-solid fa-briefcase"></i>
+                    <input type="number" name="internships" required placeholder="e.g. 1">
+                </div>
+            </div>
+
+            <button class="btn" type="submit">
+                <i class="fa-solid fa-magnifying-glass-chart"></i> Predict Now
+            </button>
+
+            <div class="footer-links">
+                <a href="/records">
+                    <i class="fa-solid fa-database"></i> View Past Records
+                </a>
+
+                <a href="/resume">
+                    <i class="fa-solid fa-file-pdf"></i> Resume ATS Checker
+                </a>
+            </div>
+
+        </form>
+    </div>
+</body>
+</html>

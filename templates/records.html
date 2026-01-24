@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <title>Records</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<div class="container">
+    <h1>📌 All Student Records</h1>
+
+    <table border="1" cellpadding="8">
+        <tr>
+            <th>ID</th>
+            <th>CGPA</th>
+            <th>Projects</th>
+            <th>Skills</th>
+            <th>Aptitude</th>
+            <th>Internships</th>
+            <th>Probability</th>
+            <th>Prediction</th>
+        </tr>
+        {% for row in rows %}
+        <tr>
+            <td>{{ row[0] }}</td>
+            <td>{{ row[1] }}</td>
+            <td>{{ row[2] }}</td>
+            <td>{{ row[3] }}</td>
+            <td>{{ row[4] }}</td>
+            <td>{{ row[5] }}</td>
+            <td>{{ (row[6]*100)|round(2) }}%</td>
+            <td>{{ row[7] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <br>
+    <a href="/">🔙 Back</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fa-solid fa-square-poll-vertical"></i> Prediction Result</h1>
+            <p>Your placement probability is ready ✅</p>
+        </div>
+
+        <div class="result-box">
+            <h2><i class="fa-solid fa-chart-pie"></i> Probability: {{ probability }}%</h2>
+
+            <div class="progress-wrapper">
+                <div class="progress-bar" id="bar"></div>
+            </div>
+
+            <div class="prediction">
+                {{ prediction }}
+            </div>
+
+            <!-- Stats -->
+            <div class="stats">
+                <div class="stat-card">
+                    <p><i class="fa-solid fa-chart-line"></i> CGPA: <b>{{ cgpa }}</b></p>
+                </div>
+                <div class="stat-card">
+                    <p><i class="fa-solid fa-code"></i> Projects: <b>{{ projects }}</b></p>
+                </div>
+                <div class="stat-card">
+                    <p><i class="fa-solid fa-laptop-code"></i> Skills: <b>{{ skills_score }}</b></p>
+                </div>
+                <div class="stat-card">
+                    <p><i class="fa-solid fa-brain"></i> Aptitude: <b>{{ aptitude_score }}</b></p>
+                </div>
+                <div class="stat-card">
+                    <p><i class="fa-solid fa-briefcase"></i> Internships: <b>{{ internships }}</b></p>
+                </div>
+            </div>
+
+            <!-- ✅ IMPROVEMENT SUGGESTIONS -->
+            <div style="margin-top:32px; text-align:left;">
+                <h2 style="text-align:center;">
+                    <i class="fa-solid fa-bullseye"></i> Improvement Suggestions
+                </h2>
+
+                <p style="text-align:center; font-weight:800; margin-top:8px;">
+                    Target probability:
+                    <span style="color:#2575fc;">{{ target_prob }}</span>
+                </p>
+
+                <div style="margin-top:18px; display:flex; flex-direction:column; gap:12px;">
+                    {% for s in suggestions %}
+                        <div class="stat-card">
+                            <p style="font-weight:800;">{{ s }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- ✅ WHY THIS PREDICTION (Explainable AI) -->
+            {% if top_factors %}
+            <div style="margin-top:35px; text-align:left;">
+                <h2 style="text-align:center;">
+                    <i class="fa-solid fa-circle-question"></i> Why this prediction?
+                </h2>
+
+                <div style="margin-top:18px; display:flex; flex-direction:column; gap:12px;">
+                    {% for f in top_factors %}
+                        <div class="stat-card">
+                            <p style="font-weight:900;">
+                                ✅ {{ f[0] }} :
+                                <span style="color:#2575fc;">
+                                    {{ (f[1]*100) | round(2) }}%
+                                </span>
+                            </p>
+                        </div>
+                    {% endfor %}
+                </div>
+
+                {% if graph_file %}
+                <div style="text-align:center; margin-top:22px;">
+                    <img src="{{ url_for('static', filename=graph_file) }}"
+                         alt="Feature importance graph"
+                         style="max-width:100%; border-radius:18px; box-shadow:0 10px 25px rgba(0,0,0,0.12);">
+                </div>
+                {% endif %}
+            </div>
+            {% endif %}
+
+            <!-- Buttons -->
+            <div class="actions">
+                <a href="/" class="action-btn secondary">
+                    <i class="fa-solid fa-arrow-left"></i> Back
+                </a>
+                <a href="/records" class="action-btn">
+                    <i class="fa-solid fa-database"></i> Records
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let probability = {{ probability }};
+        document.getElementById("bar").style.width = probability + "%";
+    </script>
+</body>
+</html>
