@@ -7,9 +7,7 @@
     font-family:"Poppins", sans-serif;
 }
 
-/* -------------------------
-   Background
-------------------------- */
+
 body{
     min-height:100vh;
     background: linear-gradient(-45deg,#6a11cb,#2575fc,#00c6ff,#6a11cb);
@@ -28,9 +26,7 @@ body{
     100% {background-position: 0% 50%;}
 }
 
-/* -------------------------
-   Container (Premium Glass)
-------------------------- */
+
 .container{
     width:100%;
     max-width:950px;
@@ -64,9 +60,6 @@ body{
     }
 }
 
-/* -------------------------
-   Header
-------------------------- */
 .header{
     padding:30px;
     background:linear-gradient(90deg,#2575fc,#6a11cb);
@@ -86,9 +79,7 @@ body{
     font-size:15px;
 }
 
-/* -------------------------
-   Forms
-------------------------- */
+
 .form-box{
     padding:30px;
     display:grid;
@@ -108,9 +99,7 @@ body{
     color:#222;
 }
 
-/* -------------------------
-   Inputs with icons
-------------------------- */
+
 .input-icon{
     position:relative;
 }
@@ -141,9 +130,7 @@ body{
     transform: scale(1.01);
 }
 
-/* -------------------------
-   COOL BUTTONS (UNCHANGED)
-------------------------- */
+
 .btn, .action-btn {
     display: inline-flex;
     align-items: center;
@@ -250,9 +237,7 @@ body{
     border: 1px solid rgba(255, 255, 255, 0.35);
 }
 
-/* -------------------------
-   Result Page
-------------------------- */
+
 .result-box{
     padding:30px;
     text-align:center;
@@ -270,9 +255,7 @@ body{
     margin-top:15px;
 }
 
-/* -------------------------
-   Progress Bar
-------------------------- */
+
 .progress-wrapper{
     width:100%;
     max-width:520px;
@@ -295,9 +278,7 @@ body{
     box-shadow: 0 10px 20px rgba(37,117,252,0.35);
 }
 
-/* -------------------------
-   Stats Cards
-------------------------- */
+
 .stats{
     margin-top:20px;
     display:grid;
@@ -328,9 +309,7 @@ body{
     margin-right:8px;
 }
 
-/* -------------------------
-   Actions row
-------------------------- */
+
 .actions{
     margin-top:25px;
     display:flex;
@@ -339,9 +318,7 @@ body{
     flex-wrap:wrap;
 }
 
-/* -------------------------
-   File input styling
-------------------------- */
+
 input[type="file"]{
     width:100%;
     max-width:520px;
@@ -361,7 +338,7 @@ input[type="file"]:hover{
     box-shadow:0 14px 30px rgba(0,0,0,0.10);
 }
 
-/* Choose file button (Chrome/Edge) */
+
 input[type="file"]::file-selector-button{
     border: none;
     padding: 10px 14px;
@@ -384,9 +361,7 @@ input[type="file"]::file-selector-button:active{
     transform: scale(0.97);
 }
 
-/* -------------------------
-   Table Styling (records pages)
-------------------------- */
+
 table{
     width:100%;
     border-collapse:collapse;
@@ -416,9 +391,7 @@ tr:hover td{
     background: rgba(37,117,252,0.06);
 }
 
-/* -------------------------
-   Responsive
-------------------------- */
+
 @media(max-width:768px){
     .form-box{
         grid-template-columns:1fr;
