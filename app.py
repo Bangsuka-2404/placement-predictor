@@ -13,9 +13,7 @@ import matplotlib.pyplot as plt
 
 app = Flask(__name__)
 
-# --------------------------
-# CONFIG
-# --------------------------
+
 UPLOAD_FOLDER = "uploads"
 ALLOWED_EXTENSIONS = {"pdf"}
 app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
@@ -24,21 +22,16 @@ app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 if not os.path.exists(UPLOAD_FOLDER):
     os.makedirs(UPLOAD_FOLDER)
 
-# --------------------------
-# Load ML model & scaler
-# --------------------------
+
 model = joblib.load("placement_model.pkl")
 scaler = joblib.load("scaler.pkl")
 
 
-# --------------------------
-# Database init
-# --------------------------
 def init_db():
     conn = sqlite3.connect("database.db")
     cur = conn.cursor()
 
-    # Placement predictions table
+    
     cur.execute("""
         CREATE TABLE IF NOT EXISTS placements (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -52,7 +45,7 @@ def init_db():
         )
     """)
 
-    # Resume analysis table
+    
     cur.execute("""
         CREATE TABLE IF NOT EXISTS resume_analysis (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -67,9 +60,7 @@ def init_db():
     conn.close()
 
 
-# --------------------------
-# Helper functions
-# --------------------------
+
 def allowed_file(filename):
     return "." in filename and filename.rsplit(".", 1)[1].lower() in ALLOWED_EXTENSIONS
 
@@ -151,9 +142,7 @@ def generate_suggestions(cgpa, projects, skills_score, aptitude_score, internshi
     return target_prob, suggestions
 
 
-# --------------------------
-# ✅ Explainable AI functions
-# --------------------------
+
 def get_feature_importance(model):
     """
     Returns list of (feature_name, score) sorted descending.
@@ -200,9 +189,7 @@ def save_feature_importance_graph(importance):
     return "feature_importance.png"
 
 
-# --------------------------
-# ROUTES
-# --------------------------
+
 @app.route("/", methods=["GET", "POST"])
 def index():
     if request.method == "POST":
@@ -212,7 +199,7 @@ def index():
         aptitude_score = int(request.form["aptitude_score"])
         internships = int(request.form["internships"])
 
-        # ML Prediction
+      
         features = np.array([[cgpa, projects, skills_score, aptitude_score, internships]])
         scaled_features = scaler.transform(features)
 
@@ -220,7 +207,7 @@ def index():
         prediction = "Placed ✅" if proba >= 0.5 else "Not Placed ❌"
         probability_percent = round(proba * 100, 2)
 
-        # Save placement prediction
+      
         conn = sqlite3.connect("database.db")
         cur = conn.cursor()
         cur.execute("""
@@ -230,12 +217,12 @@ def index():
         conn.commit()
         conn.close()
 
-        # Smart suggestions
+    
         target_prob, suggestions = generate_suggestions(
             cgpa, projects, skills_score, aptitude_score, internships, probability_percent
         )
 
-        # ✅ Explainable AI
+       
         importance = get_feature_importance(model)
         top_factors = importance[:5]
         graph_file = save_feature_importance_graph(top_factors)
@@ -269,7 +256,7 @@ def records():
     return render_template("records.html", rows=rows)
 
 
-# Resume Upload + ATS
+
 @app.route("/resume", methods=["GET", "POST"])
 def resume():
     if request.method == "POST":
@@ -286,13 +273,13 @@ def resume():
             filepath = os.path.join(app.config["UPLOAD_FOLDER"], filename)
             file.save(filepath)
 
-            # Extract PDF text
+           
             text = extract_text_from_pdf(filepath)
 
-            # Analyze resume
+           
             ats_score, detected_skills, missing_skills = analyze_resume(text)
 
-            # Save resume analysis to DB
+           
             conn = sqlite3.connect("database.db")
             cur = conn.cursor()
             cur.execute("""
@@ -330,9 +317,7 @@ def resume_records():
     return render_template("resume_records.html", rows=rows)
 
 
-# --------------------------
-# MAIN
-# --------------------------
+
 if __name__ == "__main__":
     init_db()
     app.run(host="0.0.0.0", port=5000)
